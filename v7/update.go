@@ -10,7 +10,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/olivere/elastic/v7/uritemplates"
+	"github.com/facert/elastic/v7/uritemplates"
 )
 
 // UpdateService updates a document in Elasticsearch.

@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/olivere/elastic/v7/uritemplates"
+	"github.com/facert/elastic/v7/uritemplates"
 )
 
 // IndicesExistsTemplateService checks if a given template exists.

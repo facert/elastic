@@ -18,7 +18,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/olivere/elastic/v7"
+	"github.com/facert/elastic/v7"
 )
 
 const (

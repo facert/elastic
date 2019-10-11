@@ -8,31 +8,31 @@ cli:
   project: git@github.com:olivere/elastic.git
 analyze:
   modules:
-  - name: github.com/olivere/elastic
+  - name: github.com/facert/elastic
     path: .
-    target: github.com/olivere/elastic
+    target: github.com/facert/elastic
     type: go
-  - name: github.com/olivere/elastic/config
+  - name: github.com/facert/elastic/config
     path: ./config
-    target: github.com/olivere/elastic/config
+    target: github.com/facert/elastic/config
     type: go
-  - name: github.com/olivere/elastic/uritemplates
+  - name: github.com/facert/elastic/uritemplates
     path: ./uritemplates
-    target: github.com/olivere/elastic/uritemplates
+    target: github.com/facert/elastic/uritemplates
     type: go
-  - name: github.com/olivere/elastic/trace/opencensus
+  - name: github.com/facert/elastic/trace/opencensus
     path: ./trace/opencensus
-    target: github.com/olivere/elastic/trace/opencensus
+    target: github.com/facert/elastic/trace/opencensus
     type: go
-  - name: github.com/olivere/elastic/trace/opentracing
+  - name: github.com/facert/elastic/trace/opentracing
     path: ./trace/opentracing
-    target: github.com/olivere/elastic/trace/opentracing
+    target: github.com/facert/elastic/trace/opentracing
     type: go
-  - name: github.com/olivere/elastic/aws
+  - name: github.com/facert/elastic/aws
     path: ./aws
-    target: github.com/olivere/elastic/aws
+    target: github.com/facert/elastic/aws
     type: go
-  - name: github.com/olivere/elastic/aws/v4
+  - name: github.com/facert/elastic/aws/v4
     path: ./aws/v4
-    target: github.com/olivere/elastic/aws/v4
+    target: github.com/facert/elastic/aws/v4
     type: go

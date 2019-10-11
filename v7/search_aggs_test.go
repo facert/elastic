@@ -1456,7 +1456,7 @@ func TestAggsCompositeIntegration(t *testing.T) {
 }
 
 // TestAggsMarshal ensures that marshaling aggregations back into a string
-// does not yield base64 encoded data. See https://github.com/olivere/elastic/issues/51
+// does not yield base64 encoded data. See https://github.com/facert/elastic/issues/51
 // and https://groups.google.com/forum/#!topic/Golang-Nuts/38ShOlhxAYY for details.
 func TestAggsMarshal(t *testing.T) {
 	client := setupTestClientAndCreateIndex(t)

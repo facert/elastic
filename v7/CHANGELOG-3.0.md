@@ -31,7 +31,7 @@ res, err := elastic.Search("one").Query(q).Do()   // no more &
 res, err := elastic.Search("one").Query(elastic.NewMatchAllQuery()).Do()
 ```
 
-It also helps to prevent [subtle issues](https://github.com/olivere/elastic/issues/115#issuecomment-130753046).
+It also helps to prevent [subtle issues](https://github.com/facert/elastic/issues/115#issuecomment-130753046).
 
 ## Query/filter merge
 
@@ -65,7 +65,7 @@ res, err := elastic.Search().Index("one").Query(q).PostFilter(f)
 
 Elasticsearch 2.0 returns more information about an error in the HTTP response body. Elastic 3.0 now reads this information and makes it accessible by the consumer.
 
-Errors and all its details are now returned in [`Error`](https://github.com/olivere/elastic/blob/release-branch.v3/errors.go#L59).
+Errors and all its details are now returned in [`Error`](https://github.com/facert/elastic/blob/release-branch.v3/errors.go#L59).
 
 ### HTTP Status 404 (Not Found)
 
@@ -73,7 +73,7 @@ When Elasticsearch does not find an entity or an index, it generally returns HTT
 
 Starting with Elastic 3.0, there are only two types of responses considered successful. First, responses with HTTP status codes [200..299]. Second, HEAD requests which return HTTP status 404. The latter is used by Elasticsearch to e.g. check for existence of indices or documents. All other responses will return an error.
 
-To check for HTTP Status 404 (with non-HEAD requests), e.g. when trying to get or delete a missing document, you can use the [`IsNotFound`](https://github.com/olivere/elastic/blob/release-branch.v3/errors.go#L84) helper (see below).
+To check for HTTP Status 404 (with non-HEAD requests), e.g. when trying to get or delete a missing document, you can use the [`IsNotFound`](https://github.com/facert/elastic/blob/release-branch.v3/errors.go#L84) helper (see below).
 
 The following example illustrates how to check for a missing document in Elastic 2.0 and what has changed in 3.0.
 
@@ -106,7 +106,7 @@ if err != nil {
 
 Elasticsearch now responds with HTTP status code 408 (Timeout) when a request fails due to a timeout. E.g. if you specify a timeout with the Cluster Health API, the HTTP response status will be 408 if the timeout is raised. See [here](https://github.com/elastic/elasticsearch/commit/fe3179d9cccb569784434b2135ca9ae13d5158d3) for the specific commit to the Cluster Health API.
 
-To check for HTTP Status 408, we introduced the [`IsTimeout`](https://github.com/olivere/elastic/blob/release-branch.v3/errors.go#L101) helper.
+To check for HTTP Status 408, we introduced the [`IsTimeout`](https://github.com/facert/elastic/blob/release-branch.v3/errors.go#L101) helper.
 
 Example for Elastic 2.0 (old):
 
@@ -133,7 +133,7 @@ if elastic.IsTimeout(err) {
 
 The error response of a bulk operation used to be a simple string in Elasticsearch 1.x.
 In Elasticsearch 2.0, it returns a structured JSON object with a lot more details about the error.
-These errors are now captured in an object of type [`ErrorDetails`](https://github.com/olivere/elastic/blob/release-branch.v3/errors.go#L59) which is used in [`BulkResponseItem`](https://github.com/olivere/elastic/blob/release-branch.v3/bulk.go#L206).
+These errors are now captured in an object of type [`ErrorDetails`](https://github.com/facert/elastic/blob/release-branch.v3/errors.go#L59) which is used in [`BulkResponseItem`](https://github.com/facert/elastic/blob/release-branch.v3/bulk.go#L206).
 
 ### Removed specific Elastic errors
 
@@ -309,7 +309,7 @@ Partial fields are [removed in Elasticsearch 2.0](https://www.elastic.co/guide/e
 
 ## Scripting
 
-A [`Script`](https://github.com/olivere/elastic/blob/release-branch.v3/script.go) type has been added to Elastic 3.0. In Elastic 2.0, there were various places (e.g. aggregations) where you could just add the script as a string, specify the scripting language, add parameters etc. With Elastic 3.0, you should now always use the `Script` type.
+A [`Script`](https://github.com/facert/elastic/blob/release-branch.v3/script.go) type has been added to Elastic 3.0. In Elastic 2.0, there were various places (e.g. aggregations) where you could just add the script as a string, specify the scripting language, add parameters etc. With Elastic 3.0, you should now always use the `Script` type.
 
 Example for Elastic 2.0 (old):
 
@@ -336,7 +336,7 @@ The combination of `Metric(string)` and `Metrics(...string)` has been replaced b
 
 ## Unexported structs in response
 
-Services generally return a typed response from a `Do` func. Those structs are exported so that they can be passed around in your own application. In Elastic 3.0 however, we changed that (most) sub-structs are now unexported, meaning: You can only pass around the whole response, not sub-structures of it. This makes it easier for restructuring responses according to the Elasticsearch API. See [`ClusterStateResponse`](https://github.com/olivere/elastic/blob/release-branch.v3/cluster_state.go#L182) as an example.
+Services generally return a typed response from a `Do` func. Those structs are exported so that they can be passed around in your own application. In Elastic 3.0 however, we changed that (most) sub-structs are now unexported, meaning: You can only pass around the whole response, not sub-structures of it. This makes it easier for restructuring responses according to the Elasticsearch API. See [`ClusterStateResponse`](https://github.com/facert/elastic/blob/release-branch.v3/cluster_state.go#L182) as an example.
 
 ## Add offset to Histogram aggregation
 
